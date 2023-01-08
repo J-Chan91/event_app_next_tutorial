@@ -20,32 +20,33 @@ export default function EventItem({ event }: EventItemPropType) {
 
   const exploreLink = `events/${event.id}`;
 
-  console.log(event.image);
-
   return (
-    <li>
+    <li className={classes.item}>
       <Image
         src={`/${event.image}`}
         alt={event.title}
         width={300}
         height={200}
+        priority={true}
       />
 
-      <div>
-        <h2>TITLE</h2>
+      <div className={classes.content}>
+        <div className={classes.summary}>
+          <h2>{event.title}</h2>
 
-        <div>
-          <time>{humanReadableDate}</time>
+          <div className={classes.date}>
+            <time>{humanReadableDate}</time>
+          </div>
+
+          <div className={classes.address}>
+            {/* <address>{event.location}</address> */}
+            <address>{formatteredAddress}</address>
+          </div>
         </div>
 
-        <div>
-          {/* <address>{event.location}</address> */}
-          <address>{formatteredAddress}</address>
+        <div className={classes.actions}>
+          <Link href={exploreLink}>Explore Event</Link>
         </div>
-      </div>
-
-      <div>
-        <Link href={exploreLink}>Explore Event</Link>
       </div>
     </li>
   );
